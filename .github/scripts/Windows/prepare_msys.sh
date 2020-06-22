@@ -48,6 +48,12 @@ if test -d /c/AJA; then
         data/scripts/build_aja_lib_win64.sh
 fi
 
+if [ -n "$sdk_pass" ]; then
+        curl --netrc-file <(cat <<<"machine frakira.fi.muni.cz login sdk password $sdk_pass") https://frakira.fi.muni.cz/~xpulec/sdks/VideoMasterHD_Win.tar.xz -O
+        tar xJf VideoMasterHD_Win.tar.xz -C /usr/local
+        rm VideoMasterHD_Win.tar.xz
+fi
+
 # Install live555
 cd /c/live555
 make install
