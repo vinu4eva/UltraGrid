@@ -45,10 +45,9 @@ if [ -n "$sdk_pass" ]; then
 fi
 
 if [ -n "$sdk_pass" ]; then
-        curl --netrc-file <(cat <<<"machine frakira.fi.muni.cz login sdk password $sdk_pass") https://frakira.fi.muni.cz/~xpulec/sdks/VideoMaster_SDK_MacOSX.zip -O
-        unzip VideoMaster_SDK_MacOSX.zip VideoMaster_SDK.pkg
-        sudo installer -pkg VideoMaster_SDK.pkg -target /
-        sudo rm VideoMaster_SDK_MacOSX.zip VideoMaster_SDK.pkg
+        curl -S --netrc-file <(cat <<<"machine frakira.fi.muni.cz login sdk password $sdk_pass") https://frakira.fi.muni.cz/~xpulec/sdks/VideoMasterHD_mac.tar.xz -O
+        sudo tar xJf VideoMasterHD_mac.tar.xz -C $(xcrun --show-sdk-path)/System/Library/Frameworks
+        sudo rm VideoMasterHD_mac.tar.xz
 fi
 
 # Install NDI
