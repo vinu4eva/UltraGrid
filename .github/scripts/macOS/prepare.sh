@@ -44,6 +44,13 @@ if [ -n "$sdk_pass" ]; then
         cd $TEMP_INST
 fi
 
+if [ -n "$sdk_pass" ]; then
+        curl --netrc-file <(cat <<<"machine frakira.fi.muni.cz login sdk password $sdk_pass") https://frakira.fi.muni.cz/~xpulec/sdks/VideoMaster_SDK_MacOSX.zip -O
+        unzip VideoMaster_SDK_MacOSX.zip VideoMaster_SDK.pkg
+        sudo installer -pkg VideoMaster_SDK.pkg -target /
+        sudo rm VideoMaster_SDK_MacOSX.zip VideoMaster_SDK.pkg
+fi
+
 # Install NDI
 if [ -n "$sdk_pass" -a "$GITHUB_REF" = refs/heads/ndi-build ]; then
         curl --netrc-file <(cat <<<"machine frakira.fi.muni.cz login sdk password $sdk_pass") https://frakira.fi.muni.cz/~xpulec/sdks/NDISDK_Apple.pkg -O
